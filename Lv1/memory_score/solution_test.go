@@ -41,25 +41,6 @@ func TestSolution(t *testing.T) {
 
 }
 
-func BenchmarkSolution(b *testing.B) {
-	nameTestCase := []string{
-		"may", "kein", "kain", "radi",
-	}
-	yearningTestCase := []int{
-		5, 10, 1, 3,
-	}
-
-	photoTestCase := [][]string{
-		{"may", "kein", "kain", "radi"}, {"may", "kein", "brin", "deny"}, {"kon", "kain", "may", "coni"},
-	}
-
-	for i := 0; i < b.N; i++ {
-		_ = solution(nameTestCase, yearningTestCase, photoTestCase)
-	}
-}
-
-// solution2
-
 func TestSolution2(t *testing.T) {
 	const TEST_COUNT = 3
 	nameTestCases := [TEST_COUNT][]string{
@@ -94,6 +75,23 @@ func TestSolution2(t *testing.T) {
 		fmt.Println("successResult :=", successResult[i])
 	}
 
+}
+
+func BenchmarkSolution(b *testing.B) {
+	nameTestCase := []string{
+		"may", "kein", "kain", "radi",
+	}
+	yearningTestCase := []int{
+		5, 10, 1, 3,
+	}
+
+	photoTestCase := [][]string{
+		{"may", "kein", "kain", "radi"}, {"may", "kein", "brin", "deny"}, {"kon", "kain", "may", "coni"},
+	}
+
+	for i := 0; i < b.N; i++ {
+		_ = solution(nameTestCase, yearningTestCase, photoTestCase)
+	}
 }
 
 func BenchmarkSolution2(b *testing.B) {
