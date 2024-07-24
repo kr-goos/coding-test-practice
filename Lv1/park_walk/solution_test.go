@@ -6,17 +6,31 @@ import (
 	"testing"
 )
 
-func TestSetParkPosition(park []string) {
+func TestSetParkPosition(t *testing.T) {
 	parkTestcases := [][]string{
 		{"SOO", "OOO", "OOO"},
 		{"SOO", "OXX", "OOO"},
 		{"OSO", "OOO", "OXO", "OOO"},
 	}
+
 	r := NewRobot()
 
 	for _, tc := range parkTestcases {
+		fmt.Println("testcase : ", tc)
 		r.SetParkPosition(tc)
 		fmt.Println("Map : ", r.park.Map)
+	}
+
+}
+
+func TestIsMovePossible(t *testing.T) {
+	r := NewRobot()
+
+	cmdTestcase := []string{"E", "N", "S", "W"}
+	distanceTestcase := []int{1, 3, 2, 5}
+
+	for i := range cmdTestcase {
+		fmt.Printf("%s %d is move possible %t\n", cmdTestcase[i], distanceTestcase[i], r.isMovePossible(cmdTestcase[i], distanceTestcase[i]))
 	}
 
 }

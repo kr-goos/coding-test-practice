@@ -63,6 +63,10 @@ func (r *Robot) SetParkPosition(park []string) {
 }
 
 func (r *Robot) isMovePossible(cmd string, distance int) bool {
+	if r.current.row == -1 || r.current.col == -1 {
+		return false
+	}
+
 	switch cmd {
 	case EAST:
 		if r.current.col+distance > r.park.colLiMitIndex {
