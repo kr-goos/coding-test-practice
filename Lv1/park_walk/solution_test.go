@@ -6,6 +6,21 @@ import (
 	"testing"
 )
 
+func TestSetParkPosition(park []string) {
+	parkTestcases := [][]string{
+		{"SOO", "OOO", "OOO"},
+		{"SOO", "OXX", "OOO"},
+		{"OSO", "OOO", "OXO", "OOO"},
+	}
+	r := NewRobot()
+
+	for _, tc := range parkTestcases {
+		r.SetParkPosition(tc)
+		fmt.Println("Map : ", r.park.Map)
+	}
+
+}
+
 func TestSolution(t *testing.T) {
 	parkTestcase := []string{
 		"SOO", "OXX", "OOO",

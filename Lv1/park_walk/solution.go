@@ -6,20 +6,20 @@ import (
 )
 
 const (
-	// park map
+	// park constant
 	START      = "S"
 	POSSIBLE   = "O"
 	IMPOSSIBLE = "X"
 
-	// moving direction
+	// moving direction constant
 	EAST  = "E"
 	WEST  = "W"
 	NORTH = "N"
 	SOUTH = "S"
 )
 
-type Position struct {
-	x, y int
+type PositionIndex struct {
+	row, col int
 }
 
 type Park struct {
@@ -29,16 +29,16 @@ type Park struct {
 }
 
 type Robot struct {
-	current Position
+	current PositionIndex
 	park    Park
 }
 
 func NewRobot() *Robot {
-	return &Robot{}
+	return &Robot{current: PositionIndex{row: -1, col: -1}}
 }
 
-func (r *Robot) GetPosition() []int {
-	return []int{r.current.x, r.current.y}
+func (r *Robot) GetPositionIndex() []int {
+	return []int{r.current.row, r.current.col}
 }
 
 func (r *Robot) SetParkPosition(park []string) {
@@ -54,8 +54,8 @@ func (r *Robot) SetParkPosition(park []string) {
 		for colIdx := 0; colIdx < len(rowStr); colIdx++ {
 			v := string(rowStr[colIdx])
 			if v == START {
-				r.current.x = rowIdx
-				r.current.y = colIdx
+				r.current.row = rowIdx
+				r.current.col = colIdx
 			}
 			r.park.Map[rowIdx][colIdx] = v
 		}
@@ -65,44 +65,44 @@ func (r *Robot) SetParkPosition(park []string) {
 func (r *Robot) isMovePossible(cmd string, distance int) bool {
 	switch cmd {
 	case EAST:
-		if r.current.x+distance > r.park.colLiMitIndex {
+		if r.current.col+distance > r.park.colLiMitIndex {
 			return false
 		}
 
 		for i := 1; i <= distance; i++ {
-			if r.park.Map[r.current.x+i][r.current.y] == IMPOSSIBLE {
+			if r.park.Map[r.current.row][r.current.col+i] == IMPOSSIBLE {
 				return false
 			}
 		}
 
 	case WEST:
-		if r.current.x-distance < 0 {
+		if r.current.col-distance < 0 {
 			return false
 		}
 
 		for i := 1; i <= distance; i++ {
-			if r.park.Map[r.current.x-i][r.current.y] == IMPOSSIBLE {
+			if r.park.Map[r.current.row][r.current.col-i] == IMPOSSIBLE {
 				return false
 			}
 		}
 	case SOUTH:
-		if r.current.y+distance > r.park.rowLiMitIndex {
+		if r.current.row+distance > r.park.rowLiMitIndex {
 			return false
 		}
 
 		for i := 1; i <= distance; i++ {
-			if r.park.Map[r.current.x][r.current.y+i] == IMPOSSIBLE {
+			if r.park.Map[r.current.row+i][r.current.col] == IMPOSSIBLE {
 				return false
 			}
 		}
 
 	case NORTH:
-		if r.current.y-distance < 0 {
+		if r.current.row-distance < 0 {
 			return false
 		}
 
 		for i := 1; i <= distance; i++ {
-			if r.park.Map[r.current.x][r.current.y-i] == IMPOSSIBLE {
+			if r.park.Map[r.current.row-i][r.current.col] == IMPOSSIBLE {
 				return false
 			}
 		}
@@ -118,13 +118,13 @@ func (r *Robot) isMovePossible(cmd string, distance int) bool {
 func (r *Robot) move(cmd string, distance int) {
 	switch cmd {
 	case EAST:
-		r.current.x += distance
+		r.current.col += distance
 	case WEST:
-		r.current.x -= distance
+		r.current.col -= distance
 	case SOUTH:
-		r.current.y += distance
+		r.current.row += distance
 	case NORTH:
-		r.current.y -= distance
+		r.current.row -= distance
 	}
 }
 
@@ -141,5 +141,5 @@ func solution(park []string, routes []string) []int {
 		}
 	}
 
-	return r.GetPosition()
+	return r.GetPositionIndex()
 }
