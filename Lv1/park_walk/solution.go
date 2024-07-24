@@ -62,7 +62,7 @@ func (r *Robot) SetParkPosition(park []string) {
 	}
 }
 
-func (r *Robot) isMovePossible(cmd string, distance int) bool {
+func (r *Robot) IsMovePossible(cmd string, distance int) bool {
 	if r.current.row == -1 || r.current.col == -1 {
 		return false
 	}
@@ -119,7 +119,7 @@ func (r *Robot) isMovePossible(cmd string, distance int) bool {
 
 }
 
-func (r *Robot) move(cmd string, distance int) {
+func (r *Robot) Move(cmd string, distance int) {
 	switch cmd {
 	case EAST:
 		r.current.col += distance
@@ -140,8 +140,8 @@ func solution(park []string, routes []string) []int {
 		s := strings.Split(route, " ")
 		distance, _ := strconv.Atoi(s[1])
 
-		if r.isMovePossible(s[0], distance) {
-			r.move(s[0], distance)
+		if r.IsMovePossible(s[0], distance) {
+			r.Move(s[0], distance)
 		}
 	}
 

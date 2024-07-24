@@ -30,7 +30,7 @@ func TestIsMovePossible(t *testing.T) {
 	distanceTestcase := []int{1, 3, 2, 5}
 
 	for i := range cmdTestcase {
-		fmt.Printf("%s %d is move possible %t\n", cmdTestcase[i], distanceTestcase[i], r.isMovePossible(cmdTestcase[i], distanceTestcase[i]))
+		fmt.Printf("%s %d is move possible %t\n", cmdTestcase[i], distanceTestcase[i], r.IsMovePossible(cmdTestcase[i], distanceTestcase[i]))
 	}
 
 }
