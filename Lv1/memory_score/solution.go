@@ -1,4 +1,4 @@
-package main
+package memoryscore
 
 // 파라미터를 그대로 이용한 방법
 func solution(name []string, yearning []int, photo [][]string) []int {
