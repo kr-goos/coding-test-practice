@@ -4,11 +4,11 @@ func solution(n int, m int, section []int) int {
 
 	count, position := 0, section[0]
 
-	for i := range section {
-		if position > section[i] {
+	for _, v := range section {
+		if position > v {
 			continue
 		}
-		position = section[i] + m
+		position = v + m
 		count++
 	}
 
