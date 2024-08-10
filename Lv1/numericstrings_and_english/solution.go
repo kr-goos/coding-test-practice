@@ -9,8 +9,7 @@ import (
 func solution(s string) int {
 
 	for i, v := range initEnglishArray() {
-		idx := strings.Index(s, v)
-		if idx == -1 {
+		if !strings.Contains(s, v) {
 			continue
 		}
 		s = strings.ReplaceAll(s, v, fmt.Sprintf("%d", i))
