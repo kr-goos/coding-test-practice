@@ -10,17 +10,16 @@ func solution(id_list []string, report []string, k int) []int {
 	for _, ids := range report {
 		s := strings.Split(ids, " ")
 
-		m, ok := reportedIdMap[s[0]]
+		_, ok := reportedIdMap[s[0]]
 		if !ok {
-			m = make(map[string]struct{})
+			reportedIdMap[s[0]] = make(map[string]struct{})
 		} else {
-			_, exist := m[s[1]]
+			_, exist := reportedIdMap[s[0]][s[1]]
 			if exist {
 				continue
 			}
 		}
-		m[s[1]] = struct{}{}
-		reportedIdMap[s[0]] = m
+		reportedIdMap[s[0]][s[1]] = struct{}{}
 		reportedCountMap[s[1]]++
 	}
 
