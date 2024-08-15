@@ -23,8 +23,8 @@ func TestSolution(t *testing.T) {
 
 		r := solution(n[i], m[i])
 		for j, answer := range result[i] {
-			if answer == r[j] {
-				t.Errorf("test %d failure", i)
+			if answer != r[j] {
+				t.Errorf("test %d %d index failure", i, j)
 			}
 		}
 	}
