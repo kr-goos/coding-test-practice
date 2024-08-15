@@ -29,7 +29,3 @@ func TestSolution(t *testing.T) {
 		}
 	}
 }
-
-func TestGcd(t *testing.T) {
-	fmt.Println(Gcd(15, 13))
-}
