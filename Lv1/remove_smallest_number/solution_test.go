@@ -1,6 +1,9 @@
 package removesmallestnumber
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 const TESTCOUNT = 2
 
@@ -18,7 +21,9 @@ var (
 
 func TestSolution(t *testing.T) {
 	for i := 0; i < TESTCOUNT; i++ {
-		solution(arr[i])
+		fmt.Printf("arr : %v\n", arr[i])
+		fmt.Printf("result : %v\n", result[i])
+		fmt.Printf("solution result : %v\n", solution(arr[i]))
 	}
 
 }
