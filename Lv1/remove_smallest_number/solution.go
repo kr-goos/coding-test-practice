@@ -42,6 +42,7 @@ func solution2(arr []int) []int {
 	for i, v := range arr {
 		if v == temp[len(temp)-1] {
 			arr = append(arr[:i], arr[i+1:]...)
+			break
 		}
 
 	}
