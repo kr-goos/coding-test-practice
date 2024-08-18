@@ -9,5 +9,4 @@ func TestSolution(t *testing.T) {
 	if r != result {
 		t.Errorf("%s != %s", result, r)
 	}
-
 }
