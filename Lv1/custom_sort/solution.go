@@ -14,5 +14,5 @@ func solution(strings []string, n int) []string {
 		}
 	}
 
-	return []string{}
+	return strings
 }
