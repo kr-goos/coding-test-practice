@@ -15,12 +15,12 @@ def solution1(phone_book: List[int]) -> bool:
 # 효율성: 16.7
 # 합계: 100.0 / 100.0
 def solution2(phone_book: List[int]) -> bool:
-    hash_map: Dict[str:int] = {k: 0 for k in phone_book}
+    hash_map: Dict[str,int] = {k: 0 for k in phone_book}
 
     for phone_number in phone_book:
         prefix = ''
-        for digit in phone_number:
-            prefix += digit
+        for numeric_str in phone_number:
+            prefix += numeric_str
             if prefix == phone_number:
                 continue
 
